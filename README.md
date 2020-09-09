@@ -15,16 +15,16 @@ Todas as instruções estão em: [https://github.com/bootcamp-ra/projeto-04-parr
     - [x]  **A cada requisito implementado** faça um commit com uma mensagem descritiva do que você evoluiu
     - [x]  Caso queira dividir um requisito em vários commits, não há problema. Mas evite colocar mais de um requisito no mesmo commit.
 - Layout
-    - [ ]  Aplicar layout para desktop, seguindo imagens fornecidas
-    - [ ]  Aplicar layout para mobile, seguindo imagens fornecidas
-    - [ ]  Fonte usada deve ser a Roboto
-    - [ ]  Cores
+    - [x]  Aplicar layout para desktop, seguindo imagens fornecidas
+    - [X]  Aplicar layout para mobile, seguindo imagens fornecidas
+    - [X]  Fonte usada deve ser a Roboto
+    - [X]  Cores
         - Verde título: #7ab08e
         - Amarelo Background: #effabf
         - Verde cartas: #A7E9AF
 - Distribuição de cartas
-    - [ ]  Ao entrar no jogo, o usuário deverá ser perguntado com quantas cartas quer jogar (utilize `prompt`)
-    - [ ]  O usuário só poderá inserir números pares no `prompt`, de 4 a 12. Qualquer número que fuja a essa regra não deve ser aceito. No caso de números inválidos, o `prompt` deverá ficar sendo repetido, até que o usuário coloque um número válido.
+    - [x]  Ao entrar no jogo, o usuário deverá ser perguntado com quantas cartas quer jogar (utilize `prompt`)
+    - [X]  O usuário só poderá inserir números pares no `prompt`, de 4 a 12. Qualquer número que fuja a essa regra não deve ser aceito. No caso de números inválidos, o `prompt` deverá ficar sendo repetido, até que o usuário coloque um número válido.
     - [ ]  Após inserir um número de cartas válido, o jogo deverá inserir as cartas viradas pra baixo na página de forma que a distribuição seja aleatória
 - Clique na carta
     - [ ]  Ao clicar em uma carta, a mesma deve ser virada
@@ -32,7 +32,7 @@ Todas as instruções estão em: [https://github.com/bootcamp-ra/projeto-04-parr
     - [ ]  Caso seja a segunda carta, existem 2 situações:
         - [ ]  Caso seja igual à primeira carta, o usuário acertou e ambas agora devem ficar viradas pra cima até o final do jogo
         - [ ]  Caso seja uma carta diferente da primeira carta virada, o usuário errou. Nesse caso, o jogo deve **aguardar 1 segundo** e então virar as duas cartas para baixo novamente
-    - [ ]  **Dica**: se quiser fazer o efeito 3D da carta virando, você pode ver o CSS necesśario em: [https://repl.it/@BootcampRespond/FlippedCards#index.html](https://repl.it/@BootcampRespond/FlippedCards#index.html) . Só se atente que nesse exemplo a carta vira ao passar o mouse. No caso do jogo, seria ao clicar.
+    - [X]  **Dica**: se quiser fazer o efeito 3D da carta virando, você pode ver o CSS necesśario em: [https://repl.it/@BootcampRespond/FlippedCards#index.html](https://repl.it/@BootcampRespond/FlippedCards#index.html) . Só se atente que nesse exemplo a carta vira ao passar o mouse. No caso do jogo, seria ao clicar.
 - Fim do Jogo
     - [ ]  Quando o usuário terminar de virar todas as cartas corretamente, deverá ser exibido um alert com a mensagem **"Você ganhou em X jogadas!"** sendo X a quantidade de vezes que o usuário virou uma carta no jogo.
 
