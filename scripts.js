@@ -1,8 +1,11 @@
 var imgArray = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
 var openedCards = [];
 
+var pontos = 0;
 
 var numCards;
+
+var jogadas = 0;
 
 start();
 
@@ -74,6 +77,8 @@ function cardOpen(element){
     cardFlip(element);
     disable(element);
 
+    increaseJogadas();
+
     if(openedCards.length === 2){  
         if(openedCards[0].getElementsByClassName("back-img")[0].src === openedCards[1].getElementsByClassName("back-img")[0].src){
             match();
@@ -94,14 +99,30 @@ function disable(element){
     element.classList.toggle("disable");
 }
 
-function notMatch(){
-    setTimeout(esperando,1000);
+function match(){
+    pontos = pontos + 2;
+    openedCards = [];
+    if(pontos == numCards){
+        setTimeout(ganhou, 1000);
+    }
 }
 
-function esperando(){
+function ganhou(){
+    alert("Você ganhou em " + jogadas + " jogadas!");
+}
+
+function notMatch(){
+    setTimeout(resetOpenedCards,1000);
+}
+
+function resetOpenedCards(){
     cardFlip(openedCards[0]);
     cardFlip(openedCards[1]);
     disable(openedCards[0]);
     disable(openedCards[1]);
     openedCards = [];
+}
+
+function increaseJogadas(){
+    jogadas++;
 }
