@@ -2,7 +2,7 @@ padrao();
 
 function padrao(){
     
-    var numCards = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 12)");
+    var numCards = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 14)");
     
     var teste = testaNumCards(numCards);
     
@@ -17,18 +17,26 @@ function padrao(){
 
 function createCards(numCards){
     for(var i = 0; i < numCards; i++){
+        
         var newLi = document.createElement("li");
-        newLi.setAttribute('class', 'card');
-        newLi.innerHTML = 
-        "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img' src='imagens/fiestaparrot.gif'></div>";
+        newLi.classList.add("card");
+        newLi.setAttribute("onclick", "flipCards(this);");
+        
+        newLi.innerHTML = "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img'  src='imagens/fiestaparrot.gif'></div>";
         var lista = document.querySelector("ul");
+        
         lista.appendChild(newLi);
+    
     }
 }
 
+function flipCards(x){
+    x.getElementsByClassName("back-face")[0].classList.toggle("virandoBack");
+    x.getElementsByClassName("front-face")[0].classList.toggle("virandoFront");
+}
 
 function testaNumCards(numCards){
-    if(((numCards > 3) && (numCards < 13)) && ((numCards%2) == 0)){
+    if(((numCards > 3) && (numCards < 15)) && ((numCards%2) == 0)){
         return 1;
     }
     else{

@@ -27,7 +27,7 @@ Todas as instruções estão em: [https://github.com/bootcamp-ra/projeto-04-parr
     - [X]  O usuário só poderá inserir números pares no `prompt`, de 4 a 12. Qualquer número que fuja a essa regra não deve ser aceito. No caso de números inválidos, o `prompt` deverá ficar sendo repetido, até que o usuário coloque um número válido.
     - [ ]  Após inserir um número de cartas válido, o jogo deverá inserir as cartas viradas pra baixo na página de forma que a distribuição seja aleatória
 - Clique na carta
-    - [ ]  Ao clicar em uma carta, a mesma deve ser virada
+    - [X]  Ao clicar em uma carta, a mesma deve ser virada
     - [ ]  Caso seja a primeira carta do par, ela deve permanecer virada até o usuário escolher a segunda carta
     - [ ]  Caso seja a segunda carta, existem 2 situações:
         - [ ]  Caso seja igual à primeira carta, o usuário acertou e ambas agora devem ficar viradas pra cima até o final do jogo

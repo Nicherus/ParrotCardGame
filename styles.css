@@ -68,22 +68,26 @@ header{
     background-color: rgb(223, 75, 75);
 }
 
- .card:hover .back-face {
+ /* .card:hover .back-face {
     transform: rotateY(0deg);
 }
 
 .card:hover .front-face {
     transform: rotateY(-180deg);
-}
+} */
+
 
 .front-img, .back-img{
     width: 80%;
     height: 65%;
 }    
 
-
-
-
+.virandoBack{
+    transform: rotateY(0deg);
+}
+.virandoFront{
+    transform: rotateY(-180deg);
+}
 
 
 
