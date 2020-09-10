@@ -7,8 +7,6 @@
     font-size: 50px;
 }
 
-
-
 /*---------------------MAIN-------------------- */
 
 main{
@@ -34,7 +32,6 @@ header{
 
 /* -------------------CARDS------------------- */
 
-            /* FLIP */
 .cards-list{
     display: flex;
     flex-wrap: wrap;
@@ -65,17 +62,8 @@ header{
 
 .back-face {
     transform: rotateY(180deg);
-    background-color: rgb(223, 75, 75);
+    background-color: #A7E9AF;
 }
-
- /* .card:hover .back-face {
-    transform: rotateY(0deg);
-}
-
-.card:hover .front-face {
-    transform: rotateY(-180deg);
-} */
-
 
 .front-img, .back-img{
     width: 80%;
@@ -85,20 +73,11 @@ header{
 .virandoBack{
     transform: rotateY(0deg);
 }
+
 .virandoFront{
     transform: rotateY(-180deg);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.disable{
+    pointer-events: none;
+}
