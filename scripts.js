@@ -1,7 +1,8 @@
-padrao();
+var imgArray = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
 
-function padrao(){
-    
+start();
+
+function start(){
     var numCards = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 14)");
     
     var teste = testaNumCards(numCards);
@@ -11,26 +12,49 @@ function padrao(){
     }
     else{
         alert("NUMERO ERRADO")
-        padrao();
+        start();
     } 
 }
 
+
+function shuffle(array){
+    for(let i = 0; i < array.length; i++){
+        let x = Math.floor(Math.random() * (i + 1));
+        let y = array[i];
+        array[i] = array[x];
+        array[x] = y;
+    }
+    return array;
+}
+
 function createCards(numCards){
-    for(var i = 0; i < numCards; i++){
+
+    let array = arrayMirror = criaArrayNumCards(numCards);
+    let arrayNumCards = array.concat(arrayMirror);
+    let shuffledArray = shuffle(arrayNumCards);
+
+    for(let i = 0; i < shuffledArray.length; i++){
         
         var newLi = document.createElement("li");
         newLi.classList.add("card");
-        newLi.setAttribute("onclick", "flipCards(this);");
+        newLi.setAttribute("onclick", "flipCard(this);");
         
-        newLi.innerHTML = "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img'  src='imagens/fiestaparrot.gif'></div>";
+        newLi.innerHTML = "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img'  src='"+ shuffledArray[i] +"'></div>";
         var lista = document.querySelector("ul");
         
-        lista.appendChild(newLi);
-    
+        lista.appendChild(newLi);  
     }
 }
 
-function flipCards(x){
+function criaArrayNumCards(numCards){
+    let ArrayNumCards = []
+    for(let i = 0; i < (numCards/2); i++){
+        ArrayNumCards[i] = imgArray[i];
+    }
+    return ArrayNumCards;
+}
+
+function flipCard(x){
     x.getElementsByClassName("back-face")[0].classList.toggle("virandoBack");
     x.getElementsByClassName("front-face")[0].classList.toggle("virandoFront");
 }
@@ -43,14 +67,3 @@ function testaNumCards(numCards){
         return 0;
     }
 }
-
-
-/* 
-    imagens/bobrossparrot.gif
-    imagens/explodyparrot.gif
-    imagens/fiestaparrot.gif
-    imagens/metalparrot.gif
-    imagens/revertitparrot.gif
-    imagens/tripletsparrot.gif
-    imagens/unicornparrot.gif
-*/
