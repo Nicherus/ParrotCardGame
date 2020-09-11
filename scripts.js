@@ -1,5 +1,7 @@
 const IMG_ARRAY = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
-var OPENED_CARDS_ARRAY = [], PONTOS, NUM_CARDS, JOGADAS;
+const CLOCK = document.querySelector(".clock");
+var OPENED_CARDS_ARRAY = [], PONTOS, NUM_CARDS, JOGADAS, TIME, SECONDS;
+
 
 function start(){
     resetCards();
@@ -7,8 +9,11 @@ function start(){
     OPENED_CARDS_ARRAY = [];
     JOGADAS = 0;
     PONTOS = 0;
-    let teste = testaNUM_CARDS();
-    
+    SECONDS = 0;
+    let teste = testaNumCards();
+    CLOCK.innerHTML = "0 segundos";
+    clearInterval(TIME);
+    timer();
     if(teste === 1){
         createCards(NUM_CARDS);
     }
@@ -29,7 +34,7 @@ function testaNumCards(){
 
 function createCards(){
 
-    let array = arrayMirror = criaArrayNUM_CARDS();
+    let array = arrayMirror = criaArrayNumCards();
     let arrayNUM_CARDS = array.concat(arrayMirror);
     let shuffledArray = shuffle(arrayNUM_CARDS);
 
@@ -102,9 +107,12 @@ function match(){
     OPENED_CARDS_ARRAY = [];
     if(PONTOS == NUM_CARDS){
         setTimeout(function(){
-            playAgain = parseInt(prompt("Você ganhou em " + JOGADAS + " JOGADAS!\nDeseja jogar novamente?\nDigite 1 para jogar novamente\nDigite 2 para finalizar"));
+            playAgain = parseInt(prompt("Você ganhou em " + JOGADAS + " JOGADAS e " + SECONDS + " SEGUNDOS!\nDeseja jogar novamente?\nDigite 1 para jogar novamente\nDigite 2 para finalizar"));
             if(playAgain === 1){
                 start();
+            }
+            else if(playAgain === 2){
+                stopTimer();
             }
         }, 500);
     }
@@ -129,4 +137,15 @@ function resetCards(){
     while(father.firstChild){
         father.removeChild(father.lastChild);
     }
+}
+
+function timer(){
+    TIME = setInterval(function(){
+        CLOCK.innerHTML = SECONDS + " segundos";
+        SECONDS++;
+    }, 1000);
+}
+
+function stopTimer(){
+    clearInterval(TIME);
 }

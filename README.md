@@ -38,5 +38,5 @@ Todas as instruções estão em: [https://github.com/bootcamp-ra/projeto-04-parr
 
 # Bônus (opcional)
 
-- [ ]  Coloque um relógio no topo superior direito da tela, contando quantos segundos já passaram desde o início do jogo. Ao final, informe na mensagem de vitória a quantidade de segundos.
-- [ ]  Ao final do jogo, pergunte com um prompt se o usuário gostaria de reiniciar a partida. Se ele responder sim, comece novamente o jogo perguntando a quantidade de cartas.
+- [X]  Coloque um relógio no topo superior direito da tela, contando quantos segundos já passaram desde o início do jogo. Ao final, informe na mensagem de vitória a quantidade de segundos.
+- [X]  Ao final do jogo, pergunte com um prompt se o usuário gostaria de reiniciar a partida. Se ele responder sim, comece novamente o jogo perguntando a quantidade de cartas.
