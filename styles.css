@@ -1,32 +1,33 @@
 /* -------------------HEADER---------------- */
 
-*{
-    font-family: 'Roboto', sans-serif;
+.game-title, .clock {
     color: #7ab08e;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 50px;
 }
 
 .clock{
-    padding-bottom: 20px;
-    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 /*---------------------MAIN-------------------- */
 
+body{
+    background-color: #effabf;
+}
+
 main{
     display: flex;
-    justify-content: center;
-    background-color: #effabf;
-    height: 100vh;
+    justify-content: center;  
     width: 100vw;
 }
 
 section{
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
     width: 1200px;
 }
 
@@ -58,16 +59,17 @@ header{
     width: 100%;
     height: 100%;
     background-color: #A7E9AF;
-    border-radius: 5px;
-    backface-visibility: hidden;
-    transition: all .6s;
-    transform-style: preserve-3d;
     color: black;
+    border-radius: 5px;
+    transform-style: preserve-3d;
+    transition: all .6s;
+    backface-visibility: hidden;
 }
 
+/* essentially makes the back-face invisible  */
 .back-face {
-    transform: rotateY(180deg);
     background-color: #A7E9AF;
+    transform: rotateY(180deg);
 }
 
 .front-img, .back-img{
@@ -75,14 +77,16 @@ header{
     height: 65%;
 }    
 
-.virandoBack{
+/* flips cards */
+.flipBack{
     transform: rotateY(0deg);
 }
-
-.virandoFront{
+.flipFront{
     transform: rotateY(-180deg);
 }
 
+
+/* disable clicks on the cards */
 .disable{
     pointer-events: none;
 }
