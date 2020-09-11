@@ -1,21 +1,16 @@
-var imgArray = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
-var openedCards = [];
-
-var pontos = 0;
-
-var numCards;
-
-var jogadas = 0;
-
-start();
+const IMG_ARRAY = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
+var OPENED_CARDS_ARRAY = [], PONTOS, NUM_CARDS, JOGADAS;
 
 function start(){
-    numCards = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 14)");
-    
-    var teste = testaNumCards();
+    resetCards();
+    NUM_CARDS = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 14)");
+    OPENED_CARDS_ARRAY = [];
+    JOGADAS = 0;
+    PONTOS = 0;
+    let teste = testaNUM_CARDS();
     
     if(teste === 1){
-        createCards(numCards);
+        createCards(NUM_CARDS);
     }
     else{
         alert("NUMERO ERRADO")
@@ -24,7 +19,7 @@ function start(){
 }
 
 function testaNumCards(){
-    if(((numCards > 3) && (numCards < 15)) && ((numCards%2) == 0)){
+    if(((NUM_CARDS > 3) && (NUM_CARDS < 15)) && ((NUM_CARDS%2) == 0)){
         return 1;
     }
     else{
@@ -34,29 +29,29 @@ function testaNumCards(){
 
 function createCards(){
 
-    let array = arrayMirror = criaArrayNumCards();
-    let arrayNumCards = array.concat(arrayMirror);
-    let shuffledArray = shuffle(arrayNumCards);
+    let array = arrayMirror = criaArrayNUM_CARDS();
+    let arrayNUM_CARDS = array.concat(arrayMirror);
+    let shuffledArray = shuffle(arrayNUM_CARDS);
 
     for(let i = 0; i < shuffledArray.length; i++){
         
-        var newLi = document.createElement("li");
+        let newLi = document.createElement("li");
         newLi.classList.add("card");
-        newLi.setAttribute("onclick", "cardOpen(this);");
+        newLi.setAttribute("onclick", "cardClick(this);");
         
         newLi.innerHTML = "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img'  src='"+ shuffledArray[i] +"'></div>";
-        var lista = document.querySelector("ul");
+        let lista = document.querySelector("ul");
         
         lista.appendChild(newLi);  
     }
 }
 
 function criaArrayNumCards(){
-    let ArrayNumCards = []
-    for(let i = 0; i < (numCards/2); i++){
-        ArrayNumCards[i] = imgArray[i];
+    let ArrayNUM_CARDS = []
+    for(let i = 0; i < (NUM_CARDS/2); i++){
+        ArrayNUM_CARDS[i] = IMG_ARRAY[i];
     }
-    return ArrayNumCards;
+    return ArrayNUM_CARDS;
 }
 
 function shuffle(array){
@@ -69,18 +64,22 @@ function shuffle(array){
     return array;
 }
 
-
-function cardOpen(element){
+function cardClick(element){
     
-    openedCards.push(element);
+    OPENED_CARDS_ARRAY.push(element);
     
     cardFlip(element);
+
     disable(element);
 
-    increaseJogadas();
+    increaseJOGADAS();
 
-    if(openedCards.length === 2){  
-        if(openedCards[0].getElementsByClassName("back-img")[0].src === openedCards[1].getElementsByClassName("back-img")[0].src){
+    if(OPENED_CARDS_ARRAY.length === 2){  
+        
+        let card1 = OPENED_CARDS_ARRAY[0].getElementsByClassName("back-img")[0];
+        let card2 = OPENED_CARDS_ARRAY[1].getElementsByClassName("back-img")[0];
+
+        if(card1.src === card2.src){
             match();
         }
         else{
@@ -94,35 +93,40 @@ function cardFlip(element){
     element.getElementsByClassName("front-face")[0].classList.toggle("virandoFront");
 }
 
-
 function disable(element){
     element.classList.toggle("disable");
 }
 
 function match(){
-    pontos = pontos + 2;
-    openedCards = [];
-    if(pontos == numCards){
-        setTimeout(ganhou, 1000);
+    PONTOS = PONTOS + 2;
+    OPENED_CARDS_ARRAY = [];
+    if(PONTOS == NUM_CARDS){
+        setTimeout(function(){
+            playAgain = parseInt(prompt("Você ganhou em " + JOGADAS + " JOGADAS!\nDeseja jogar novamente?\nDigite 1 para jogar novamente\nDigite 2 para finalizar"));
+            if(playAgain === 1){
+                start();
+            }
+        }, 500);
     }
 }
 
-function ganhou(){
-    alert("Você ganhou em " + jogadas + " jogadas!");
-}
-
 function notMatch(){
-    setTimeout(resetOpenedCards,1000);
+    setTimeout(function(){
+        cardFlip(OPENED_CARDS_ARRAY[0]);
+        cardFlip(OPENED_CARDS_ARRAY[1]);
+        disable(OPENED_CARDS_ARRAY[0]);
+        disable(OPENED_CARDS_ARRAY[1]);
+        OPENED_CARDS_ARRAY = [];
+    },1000);
 }
 
-function resetOpenedCards(){
-    cardFlip(openedCards[0]);
-    cardFlip(openedCards[1]);
-    disable(openedCards[0]);
-    disable(openedCards[1]);
-    openedCards = [];
+function increaseJOGADAS(){
+    JOGADAS++;
 }
 
-function increaseJogadas(){
-    jogadas++;
+function resetCards(){
+    let father = document.getElementById("cards-ul");
+    while(father.firstChild){
+        father.removeChild(father.lastChild);
+    }
 }
