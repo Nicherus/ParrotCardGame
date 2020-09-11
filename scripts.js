@@ -1,6 +1,7 @@
 const IMG_ARRAY = ["imagens/bobrossparrot.gif", "imagens/explodyparrot.gif", "imagens/fiestaparrot.gif", "imagens/metalparrot.gif", "imagens/revertitparrot.gif", "imagens/tripletsparrot.gif","imagens/unicornparrot.gif"];
 const CLOCK = document.querySelector(".clock");
 var opened_cards_array = [], pontos, num_cards, jogadas, time, seconds;
+var pairedCards = document.getElementsByClassName("paired");
 
 
 function start(){
@@ -72,11 +73,11 @@ function cardClick(element){
     
     opened_cards_array.push(element);
     
+    adicionarjogadas();
+    
     cardFlip(element);
 
     disable(element);
-
-    adicionarjogadas();
 
     if(opened_cards_array.length === 2){  
         
@@ -84,10 +85,10 @@ function cardClick(element){
         let card2 = opened_cards_array[1].getElementsByClassName("back-img")[0];
 
         if(card1.src === card2.src){
-            match();
+            paired();
         }
         else{
-            notMatch();
+            notPaired();
         }
     }
 }
@@ -101,29 +102,57 @@ function disable(element){
     element.classList.toggle("disable");
 }
 
-function match(){
-    pontos = pontos + 2;
-    opened_cards_array = [];
-    if(pontos == num_cards){
-        setTimeout(function(){
-            playAgain = parseInt(prompt("Você ganhou em " + jogadas + " JOGADAS e " + seconds + " SEGUNDOS!\nDeseja jogar novamente?\nDigite 1 para jogar novamente\nDigite 2 para finalizar"));
-            if(playAgain === 1){
-                start();
-            }
-            else if(playAgain === 2){
-                stopTimer();
-            }
-        }, 100);
+function disableAllCards(){
+    let father = document.getElementById("cards-ul");
+    for(let i = 0; i < num_cards; i++){
+        father.getElementsByClassName("card")[i].classList.add("disable")
     }
 }
 
-function notMatch(){
+function enableAllCards(){
+    let father = document.getElementById("cards-ul");
+    for(let i = 0; i < num_cards; i++){
+        father.getElementsByClassName("card")[i].classList.remove("disable")
+    }
+    for(let i = 0; i < pairedCards.length; i++){
+        pairedCards[i].classList.add("disable");
+    }
+}
+
+function paired(){
+    pontos = pontos + 2;
+    opened_cards_array[0].classList.add("paired");
+    opened_cards_array[1].classList.add("paired");
+    opened_cards_array = [];
+    if(pontos == num_cards){
+        won();
+    }
+}
+
+function won(){
+    let playAgain;
+    setTimeout(function(){
+        playAgain = parseInt(prompt("Você ganhou em " + jogadas + " JOGADAS e " + seconds + " SEGUNDOS!\nDeseja jogar novamente?\nDigite 1 para jogar novamente\nDigite 2 para finalizar"));
+        if(playAgain === 1){
+            start();
+        }
+        else if(playAgain === 2){
+            stopTimer();
+        }
+        else{
+            alert("Número inserido errado, por favor digite novamente.")
+            won();    
+        }
+    }, 100);
+}
+
+function notPaired(){
+    disableAllCards();
     setTimeout(function(){
         cardFlip(opened_cards_array[0]);
         cardFlip(opened_cards_array[1]);
-        disable(opened_cards_array[0]);
-        disable(opened_cards_array[1]);
         opened_cards_array = [];
+        enableAllCards();
     },1000);
 }
 
@@ -151,3 +180,4 @@ function timer(){
 function stopTimer(){
     clearInterval(time);
 }
+
