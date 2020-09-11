@@ -116,7 +116,7 @@ function createCards(){
         newLi.setAttribute("onclick", "cardClick(this);");
 
         // insert card model
-        newLi.innerHTML = "<div class='front-face'> <img class='front-img' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img'  src='"+ shuffledArray[i] +"'></div>";
+        newLi.innerHTML = "<div class='front-face'> <img class='front-img' draggable='false' src='imagens/front.png'> </div> <div class='back-face'><img class='back-img' draggable='false'  src='"+ shuffledArray[i] +"'></div>";
         let lista = document.querySelector("ul");
         lista.appendChild(newLi);  
     

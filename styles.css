@@ -7,8 +7,14 @@
     font-size: 50px;
 }
 
+header{
+    display: flex;
+    flex-direction: column;
+}
+
 .clock{
-    margin-bottom: 20px;
+    margin: 35px 35px 10px 0;
+    align-self: flex-end;
 }
 
 /*---------------------MAIN-------------------- */
@@ -27,13 +33,13 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
     width: 1200px;
 }
 
 header{
     text-align: center;
     margin-bottom: 50px;
+    width: 100vw;
 }
 
 /* -------------------CARDS------------------- */
@@ -89,4 +95,11 @@ header{
 /* disable clicks on the cards */
 .disable{
     pointer-events: none;
+}
+
+@media (max-width: 520px){
+    .clock{
+        align-self: center;
+        margin: 30px 0 10px 0;
+    }
 }
