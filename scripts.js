@@ -40,14 +40,14 @@ function start(){
     // empty opened cards
     opened_cards_array = [];
 
-    //reset moves, score and time
+    // reset moves, score and time
     moves = score = seconds = 0;
     CLOCK.innerHTML = "0s";
 
-    //reset clock interval
+    // reset clock interval
     clearInterval(time);
 
-    //prompt the user for the number of cards
+    // prompt the user for the number of cards
     askCardsNumber();
 
 }
@@ -57,7 +57,7 @@ function askCardsNumber(){
 
     num_cards = prompt("Com quantas cartas queres jogar? (apenas números pares de 4 a 14)");
 
-    //checks if the number inserted by the user is valid even numbers from 4 to 14)
+    // checks if the number inserted by the user is valid even numbers from 4 to 14)
     if(((num_cards > 3) && (num_cards < 15)) && ((num_cards%2) == 0)){
         check = 1;
     }
@@ -65,7 +65,7 @@ function askCardsNumber(){
         check = 0;
     }
 
-    //if num_cards is a valid number proceed to create cards
+    // if num_cards is a valid number proceed to create cards
     if(check === 1){
         createCards(num_cards);
     }
@@ -149,7 +149,7 @@ function shuffle(array){
 ////////////////////////////////////////////////////////////////////////////
 
 
-//on click calls this method
+// on click calls this method
 function cardClick(element){
     
     // push the opened card to the opened cards array
